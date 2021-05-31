@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { CalendarService } from '../calendar.service';
 
-import { Moment, MonthWeekdayFn } from 'moment/moment';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+
+import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 
 @Component({
   selector: 'app-date',
@@ -12,8 +15,17 @@ import { Moment, MonthWeekdayFn } from 'moment/moment';
 export class DateComponent implements OnInit {
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private ca: CalendarService) {
   }
+
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    events: [
+      { title: 'event 1', date: '2021-5-30' }
+    ]
+  };
+
+
 
   today: Date = new Date();
   month: number = this.today.getMonth();
@@ -22,6 +34,8 @@ export class DateComponent implements OnInit {
   hours: number = this.today.getHours();
   min: number = this.today.getMinutes();
 
+
+  number = this.ca.January;
 
 
 
@@ -52,20 +66,38 @@ export class DateComponent implements OnInit {
     this.first = event.value;
   }
 
-  changeDate2(type:string, event1:MatDatepickerInputEvent<Date>){
+  changeDate2(type: string, event1: MatDatepickerInputEvent<Date>) {
     console.log(`${type}: ${event1.value}`)
-    this.last=event1.value;
+    this.last = event1.value;
   }
 
 
 
-change()
-{
-  if(this.campaignOne.controls['start'].value< this.campaignOne.controls['end'].value){
+  change() {
+    if (this.campaignOne.controls['start'].value < this.campaignOne.controls['end'].value) {
+
+    }
+  }
+
+
+  nextmonth() {
+    this.month = this.month + 1;
+    if (this.month == 12) {
+      this.month = 0;
+      this.year = this.year + 1;
+    }
+  }
+
+  prevmonth() {
+    this.month = this.month - 1;
+
+    if (this.month == -1) {
+      this.month = 11;
+      this.year = this.year - 1;
+    }
+
 
   }
-}
-
 
 
 
