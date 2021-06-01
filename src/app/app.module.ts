@@ -13,18 +13,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatCardModule} from '@angular/material/card';
-
-import {CalendarService} from '../app/calendar.service';
-
-import { FullCalendarModule } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 
-FullCalendarModule.registerPlugins([
-  dayGridPlugin
-]);
+
+import { CalendarService } from '../app/calendar.service';
+
+
 
 @NgModule({
   declarations: [
@@ -45,7 +42,7 @@ FullCalendarModule.registerPlugins([
     MatButtonModule,
     MatSelectModule,
     MatCardModule,
-    FullCalendarModule
+    MatMomentDateModule
 
   ],
   providers: [CalendarService],

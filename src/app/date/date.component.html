@@ -1,11 +1,15 @@
 <div class="jumbotron">
   <mat-toolbar color="primary">
-    <span>Date</span>
+    <span>Date </span>
   </mat-toolbar>
 </div>
 
+<div class="container">
+  <h1 class="title text-center">{{this.date}} - {{this.week1}} - {{this.month}} - {{this.year}} - {{hours}} : {{min}}</h1>
+</div>
+
 <div class="container pt-5 date-range">
-  <p>{{campaignOne.value | json}}</p>
+  <p>{{campaignOne.controls['start'].value}} - {{campaignOne.controls['end'].value}} </p>
   <mat-form-field class="example-form-field" appearance="outline">
 
     <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
@@ -35,70 +39,21 @@
 
 
 <div class="container select pt-5">
-  {{range.value| json}}
+  {{range.controls['date'].value}}
   <form [formGroup]="range">
     <mat-form-field appearance="outline">
       <input matInput [matDatepicker]="picker" [min]="first" [max]="last" placeholder="range" formControlName="date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-
   </form>
 
 </div>
 
-<div class="card">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Calendar</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
 
 
-      <ul>
-        <li class="prev" (click)="prevmonth()">&#10094;</li>
-        <li class="next" (click)="nextmonth()">&#10095;</li>
-        <ul [ngSwitch]="month" [ngStyle]="{'font-size':'30px','text-align':'center'}">
-          <li *ngSwitchCase="0">January {{this.year}}</li>
-          <li *ngSwitchCase="1" class="text-center">February {{this.year}}</li>
-          <li *ngSwitchCase="2" class="text-center">March {{this.year}}</li>
-          <li *ngSwitchCase="3" class="text-center">April {{this.year}}</li>
-          <li *ngSwitchCase="4" class="text-center">May {{this.year}}</li>
-          <li *ngSwitchCase="5" class="text-center">June {{this.year}}</li>
-          <li *ngSwitchCase="6" class="text-center">July {{this.year}}</li>
-          <li *ngSwitchCase="7" class="text-center">August {{this.year}}</li>
-          <li *ngSwitchCase="8" class="text-center">September {{this.year}}</li>
-          <li *ngSwitchCase="9" class="text-center">October {{this.year}}</li>
-          <li *ngSwitchCase="10" class="text-center">November {{this.year}}</li>
-          <li *ngSwitchCase="11" class="text-center">December {{this.year}}</li>
-        </ul>
-        <li [ngStyle]="{'font-size':'20px','padding-top':'20px'}"></li>
-      </ul>
 
-      <ul class="weekname">
-        <li>Monday</li>
-        <li>Tuesday</li>
-        <li>Wednesday</li>
-        <li>Thursday</li>
-        <li>Friday</li>
-        <li>Saturday</li>
-        <li>Sunday</li>
-      </ul>
-
-      <ul class="days1">
-        <li *ngFor="let day1 of number">{{day1.day}}</li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </mat-card-content>
-  </mat-card>
+<div class="container table">
+  <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
 </div>
-
-
-
-<br>
-<br>
 

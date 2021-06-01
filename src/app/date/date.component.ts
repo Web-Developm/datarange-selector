@@ -1,16 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatCalendar, MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { CalendarService } from '../calendar.service';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import * as _moment from 'moment';
 
-import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { default as _rollupMoment, Moment } from 'moment';
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD-MM-YYYY',
+  },
+
+  display: {
+    dateInput: 'DD-MM-YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateAllLabel: 'LL',
+    monthYearAllLabel: 'MMM YYYY'
+  },
+};
 
 @Component({
   selector: 'app-date',
   templateUrl: './date.component.html',
-  styleUrls: ['./date.component.css']
+  styleUrls: ['./date.component.css'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
+  ]
 })
 export class DateComponent implements OnInit {
 
@@ -18,22 +44,27 @@ export class DateComponent implements OnInit {
   constructor(private fb: FormBuilder, private ca: CalendarService) {
   }
 
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    events: [
-      { title: 'event 1', date: '2021-5-30' }
-    ]
-  };
+  selectedDate = moment(new Date(2021, 10, 10));
+  minDate!: moment.Moment;
+  maxDate!: moment.Moment;
 
+  @ViewChild('calendar', { static: true })
+  calendar!: MatCalendar<moment.Moment>;
+
+
+
+
+
+  num = 12;
 
 
   today: Date = new Date();
-  month: number = this.today.getMonth();
+  month: any = this.today.getMonth();
   year: number = this.today.getFullYear();
-  date: number = this.today.getDate();
+  date: any = this.today.getDate();
   hours: number = this.today.getHours();
-  min: number = this.today.getMinutes();
-
+  min: any = this.today.getMinutes();
+  week1: any = this.today.getDay();
 
   number = this.ca.January;
 
@@ -43,14 +74,14 @@ export class DateComponent implements OnInit {
 
 
   campaignOne = this.fb.group({
-    start: [],
-    end: []
+    start: [moment()],
+    end: [moment()]
   });
 
 
 
   range = this.fb.group({
-    date: []
+    date: [moment()]
   });
 
   first: any = new Date(this.campaignOne.get('start')?.value);
@@ -61,54 +92,21 @@ export class DateComponent implements OnInit {
 
 
 
-  changeDate1(type: string, event: MatDatepickerInputEvent<Date>) {
+
+
+  changeDate1 = (type: string, event: MatDatepickerInputEvent<Date>): any => {
     console.log(`${type}: ${event.value}`);
     this.first = event.value;
   }
 
-  changeDate2(type: string, event1: MatDatepickerInputEvent<Date>) {
+  changeDate2 = (type: string, event1: MatDatepickerInputEvent<Date>): any => {
     console.log(`${type}: ${event1.value}`)
     this.last = event1.value;
   }
 
-
-
-  change() {
-    if (this.campaignOne.controls['start'].value < this.campaignOne.controls['end'].value) {
-
-    }
+  display = (): void => {
+    console.log(this.range.value);
   }
-
-
-  nextmonth() {
-    this.month = this.month + 1;
-    if (this.month == 12) {
-      this.month = 0;
-      this.year = this.year + 1;
-    }
-  }
-
-  prevmonth() {
-    this.month = this.month - 1;
-
-    if (this.month == -1) {
-      this.month = 11;
-      this.year = this.year - 1;
-    }
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -120,6 +118,97 @@ export class DateComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.range.value);
+
+    switch (this.month) {
+      case 0:
+        this.month = 'JAN';
+        break;
+      case 1:
+        this.month = 'FEB';
+        break;
+      case 2:
+        this.month = 'MAR';
+        break;
+      case 3:
+        this.month = 'APR';
+        break;
+      case 4:
+        this.month = 'MAY';
+        break;
+      case 5:
+        this.month = 'JUN';
+        break;
+
+      case 6:
+        this.month = 'JUL';
+        break;
+
+      case 7:
+        this.month = 'AUG';
+        break;
+
+      case 8:
+        this.month = 'SEPT';
+        break;
+
+      case 9:
+        this.month = 'OCT';
+        break;
+
+      case 10:
+        this.month = 'NOV';
+        break;
+
+      case 11:
+        this.month = 'DEC';
+        break;
+    }
+
+    switch (this.week1) {
+      case 0:
+        this.week1 = 'SUN'
+        break;
+
+      case 1:
+        this.week1 = 'MON';
+        break;
+
+      case 2:
+        this.week1 = 'TUE';
+        break;
+
+      case 3:
+        this.week1 = 'WED';
+        break;
+      case 4:
+        this.week1 = 'THU';
+        break;
+
+      case 5:
+        this.week1 = 'FRI';
+        break;
+
+      case 6:
+        this.week1 = 'SAT';
+        break;
+    }
+
+    if (this.date < 10) {
+      this.date = "0" + this.date;
+    }
+
+    else {
+      this.date = this.date;
+    }
+
+    if (this.min < 10) {
+      this.min = "0" + this.min;
+    }
+
+    else {
+      this.min = this.min;
+    }
   }
 
 }
