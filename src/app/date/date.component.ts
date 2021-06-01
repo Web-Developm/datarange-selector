@@ -44,18 +44,10 @@ export class DateComponent implements OnInit {
   constructor(private fb: FormBuilder, private ca: CalendarService) {
   }
 
-  selectedDate = moment(new Date(2021, 10, 10));
-  minDate!: moment.Moment;
-  maxDate!: moment.Moment;
+  selectedDate = moment();
 
   @ViewChild('calendar', { static: true })
   calendar!: MatCalendar<moment.Moment>;
-
-
-
-
-
-  num = 12;
 
 
   today: Date = new Date();
@@ -74,14 +66,14 @@ export class DateComponent implements OnInit {
 
 
   campaignOne = this.fb.group({
-    start: [moment()],
-    end: [moment()]
+    start: [],
+    end: []
   });
 
 
 
   range = this.fb.group({
-    date: [moment()]
+    date: []
   });
 
   first: any = new Date(this.campaignOne.get('start')?.value);
