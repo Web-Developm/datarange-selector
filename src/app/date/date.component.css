@@ -1,7 +1,13 @@
 
 
 h1{
-  padding:5px;
+  padding-top:10px;
 }
-
+.table{
+  margin-bottom: 100px;
+}
+mat-calendar{
+  width:400px;
+  margin-left:500px;
+}
 

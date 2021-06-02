@@ -8,6 +8,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 
 import { default as _rollupMoment, Moment } from 'moment';
+import { ThrowStmt } from '@angular/compiler';
 
 const moment = _rollupMoment || _moment;
 
@@ -38,13 +39,15 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
   ]
 })
+
+
 export class DateComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private ca: CalendarService) {
   }
 
-  selectedDate = moment();
+
 
   @ViewChild('calendar', { static: true })
   calendar!: MatCalendar<moment.Moment>;
@@ -54,9 +57,11 @@ export class DateComponent implements OnInit {
   month: any = this.today.getMonth();
   year: number = this.today.getFullYear();
   date: any = this.today.getDate();
-  hours: number = this.today.getHours();
+  hours: any = this.today.getHours();
   min: any = this.today.getMinutes();
   week1: any = this.today.getDay();
+
+
 
   number = this.ca.January;
 
@@ -82,7 +87,7 @@ export class DateComponent implements OnInit {
 
 
 
-
+  selectedDate = moment(new Date(this.year,this.month,5));
 
 
 
@@ -99,6 +104,8 @@ export class DateComponent implements OnInit {
   display = (): void => {
     console.log(this.range.value);
   }
+
+
 
 
 
@@ -193,6 +200,7 @@ export class DateComponent implements OnInit {
     else {
       this.date = this.date;
     }
+
 
     if (this.min < 10) {
       this.min = "0" + this.min;

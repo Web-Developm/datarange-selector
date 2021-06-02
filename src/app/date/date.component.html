@@ -4,14 +4,18 @@
   </mat-toolbar>
 </div>
 
+
 <div class="container">
-  <h1 class="title text-center">{{this.date}} - {{this.week1}} - {{this.month}} - {{this.year}} - {{hours}} : {{min}}</h1>
+  <h1 class="headline text-center">{{this.date}} - {{this.week1}} - {{this.month}} - {{this.year}} - {{hours}} : {{min}}
+  </h1>
 </div>
 
-<div class="container pt-5 date-range">
-  <p>{{campaignOne.controls['start'].value}} - {{campaignOne.controls['end'].value}} </p>
-  <mat-form-field class="example-form-field" appearance="outline">
 
+
+<div class="container pt-5 date-range">
+  <p>{{campaignOne.controls['start'].value}} {{campaignOne.controls['end'].value}} </p>
+  <mat-form-field class="example-form-field" appearance="outline">
+    <mat-label>Enter a date range</mat-label>
     <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
       <input matStartDate placeholder="Start Date" formControlName="start" (dateInput)="changeDate1('input',$event)"
         (dateChange)="changeDate1('change',$event)">
@@ -38,11 +42,14 @@
 </div>
 
 
+
+
 <div class="container select pt-5">
   {{range.controls['date'].value}}
   <form [formGroup]="range">
     <mat-form-field appearance="outline">
-      <input matInput [matDatepicker]="picker" [min]="first" [max]="last" placeholder="range" formControlName="date">
+      <mat-label>Select the date</mat-label>
+      <input matInput [matDatepicker]="picker"  [min]="first" [max]="last" placeholder="date" formControlName="date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -54,6 +61,6 @@
 
 
 <div class="container table">
-  <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
+  <mat-calendar #calendar [selected]="selectedDate"></mat-calendar>
 </div>
 
