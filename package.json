@@ -22,7 +22,6 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
-    "@fullcalendar/angular": "^5.7.0",
     "@fullcalendar/daygrid": "^5.7.0",
     "moment": "^2.29.1",
     "rxjs": "~6.6.0",
