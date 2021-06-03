@@ -6,8 +6,7 @@
 
 
 <div class="container">
-  <h1 class="headline text-center">{{this.date}} - {{this.week1}} - {{this.month}} - {{this.year}} - {{hours}} : {{min}}
-  </h1>
+
 </div>
 
 
@@ -49,11 +48,14 @@
   <form [formGroup]="range">
     <mat-form-field appearance="outline">
       <mat-label>Select the date</mat-label>
-      <input matInput [matDatepicker]="picker"  [min]="first" [max]="last" placeholder="date" formControlName="date">
+      <input matInput [matDatepicker]="picker" [min]="first" [max]="last" placeholder="date" formControlName="date"
+        (dateInput)="changeDate3('range',$event)" (dateChange)="changeDate3('range',$event)">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </form>
+
+  <button (click)="display()" mat-flat-button color="primary">Display</button>
 
 </div>
 
@@ -61,6 +63,5 @@
 
 
 <div class="container table">
-  <mat-calendar #calendar [selected]="selectedDate"></mat-calendar>
+  <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
 </div>
-

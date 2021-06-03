@@ -56,10 +56,10 @@ export class DateComponent implements OnInit {
   today: Date = new Date();
   month: any = this.today.getMonth();
   year: number = this.today.getFullYear();
-  date: any = this.today.getDate();
-  hours: any = this.today.getHours();
-  min: any = this.today.getMinutes();
-  week1: any = this.today.getDay();
+  date: number = this.today.getDate();
+  hours: number = this.today.getHours();
+  min: number = this.today.getMinutes();
+  week1: number = this.today.getDay();
 
 
 
@@ -84,10 +84,11 @@ export class DateComponent implements OnInit {
   first: any = new Date(this.campaignOne.get('start')?.value);
   last: any = new Date(this.campaignOne.get('end')?.value);
 
+  date1: any = new Date(this.range.get('date')?.value);
 
 
 
-  selectedDate = moment(new Date(this.year,this.month,5));
+  selectedDate = moment(new Date(this.year, this.month, 11));
 
 
 
@@ -101,8 +102,17 @@ export class DateComponent implements OnInit {
     this.last = event1.value;
   }
 
+  changeDate3 = (type: string, event2: MatDatepickerInputEvent<Date>): any => {
+    console.log(`${type}: ${event2.value}`);
+    this.date1 = event2.value;
+  }
+
+  dateChanged(date: any) {
+    alert(`selected: ${date}`)
+  }
+
   display = (): void => {
-    console.log(this.range.value);
+    console.log(this.selectedDate);
   }
 
 
@@ -119,7 +129,7 @@ export class DateComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.range.value);
 
-    switch (this.month) {
+    /*switch (this.month) {
       case 0:
         this.month = 'JAN';
         break;
@@ -208,7 +218,7 @@ export class DateComponent implements OnInit {
 
     else {
       this.min = this.min;
-    }
+    }*/
   }
 
 }
