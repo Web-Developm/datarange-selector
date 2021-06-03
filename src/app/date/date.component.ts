@@ -8,7 +8,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import * as _moment from 'moment';
 
 import { default as _rollupMoment, Moment } from 'moment';
-import { ThrowStmt } from '@angular/compiler';
+
 
 const moment = _rollupMoment || _moment;
 
@@ -84,11 +84,11 @@ export class DateComponent implements OnInit {
   first: any = new Date(this.campaignOne.get('start')?.value);
   last: any = new Date(this.campaignOne.get('end')?.value);
 
-  date1: any = new Date(this.range.get('date')?.value);
+  date1: any = new Date(this.range.get('date')?.value).getDate();
 
 
 
-  selectedDate = moment(new Date(this.year, this.month, 11));
+  selectedDate = moment(new Date(this.year, this.month, this.date));
 
 
 
@@ -126,8 +126,12 @@ export class DateComponent implements OnInit {
 
 
 
+
+
   ngOnInit(): void {
     console.log(this.range.value);
+
+    console.log(this.date1);
 
     /*switch (this.month) {
       case 0:
