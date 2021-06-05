@@ -55,7 +55,7 @@
     </mat-form-field>
   </form>
 
-  <button (click)="display()" mat-flat-button color="primary">Display</button>
+
 
 </div>
 
@@ -63,5 +63,5 @@
 
 
 <div class="container table">
-  <mat-calendar #calendar [selected]="selectedDate"></mat-calendar>
+  <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
 </div>
