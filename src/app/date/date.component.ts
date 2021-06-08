@@ -112,9 +112,7 @@ export class DateComponent implements OnInit {
 
 
 
-  display = (): void => {
-    console.log(this.selectedDate);
-  }
+
 
   ngOnInit(): void {
     console.log(this.range.value);
@@ -213,24 +211,7 @@ export class DateComponent implements OnInit {
     }*/
   }
 
-  sample = this.fb.group({
-    test1: [],
-    test2: []
-  });
-
-  minimum: any = 2021-5-10;
-
-  value=(type:string, event1:any):any =>{
-    console.log(`${type}: ${event1.value}`)
-    this.minimum=event1.value;
-  }
-
-  maximum: any = 2021-5-12;
-
-  value1=(type:string,event2:any):any=>{
-    console.log(`${type}: ${event2.value}`);
-    this.maximum=event2.value;
-  }
+  
 
 
 
