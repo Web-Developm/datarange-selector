@@ -23,9 +23,9 @@
         (dateChange)="changeDate2('change',$event)">
     </mat-date-range-input>
 
-    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker" type="time"></mat-datepicker-toggle>
 
-    <mat-date-range-picker #campaignOnePicker>
+    <mat-date-range-picker touchUi #campaignOnePicker>
 
       <mat-date-range-picker-actions>
 
@@ -51,17 +51,33 @@
       <input matInput [matDatepicker]="picker" [min]="first" [max]="last" placeholder="date" formControlName="date"
         (dateInput)="changeDate3('range',$event)" (dateChange)="changeDate3('range',$event)">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker touchUi #picker></mat-datepicker>
     </mat-form-field>
   </form>
 
-
-
 </div>
+
 
 
 
 
 <div class="container table">
-  <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Calendar</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-calendar #calendar [selected]="selectedDate" (selectedChange)="dateChanged($event)"
+        (dateChange)="dateChanged($event)"></mat-calendar>
+    </mat-card-content>
+  </mat-card>
+
 </div>
+
+
+
+
+
+<br>
+<br>

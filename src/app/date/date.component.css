@@ -4,10 +4,10 @@ h1{
   padding-top:10px;
 }
 .table{
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 mat-calendar{
-  width:500px;
-  margin-left:400px;
+  width:50%;
+  margin-left:300px;
 }
 

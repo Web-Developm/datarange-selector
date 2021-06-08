@@ -61,13 +61,7 @@ export class DateComponent implements OnInit {
   min: number = this.today.getMinutes();
   week1: number = this.today.getDay();
 
-
-
-  number = this.ca.January;
-
-
-
-
+  temp:any=new Date('2021-01-21');
 
 
   campaignOne = this.fb.group({
@@ -81,52 +75,46 @@ export class DateComponent implements OnInit {
     date: []
   });
 
+
+
   first: any = new Date(this.campaignOne.get('start')?.value);
   last: any = new Date(this.campaignOne.get('end')?.value);
 
-  date1: any = new Date(this.range.get('date')?.value).getDate();
+  date1: any = new Date(this.range.get('date')?.value);
 
 
-
-  selectedDate = moment(new Date(this.year, this.month, this.date));
+  selectedDate = (new Date(this.date1));
+  
+  
 
 
 
   changeDate1 = (type: string, event: MatDatepickerInputEvent<Date>): any => {
-    console.log(`${type}: ${event.value}`);
+    //console.log(`${type}: ${event.value}`);
     this.first = event.value;
   }
 
   changeDate2 = (type: string, event1: MatDatepickerInputEvent<Date>): any => {
-    console.log(`${type}: ${event1.value}`)
+    //console.log(`${type}: ${event1.value}`)
     this.last = event1.value;
   }
 
   changeDate3 = (type: string, event2: MatDatepickerInputEvent<Date>): any => {
-    console.log(`${type}: ${event2.value}`);
+    //console.log(`${type}: ${event2.value}`);
     this.date1 = event2.value;
+    this.selectedDate=new Date(this.date1);
+    console.log(new Date(this.date1));
   }
 
-  dateChanged(date: any) {
-    alert(`selected: ${date}`)
+  dateChanged = (date: any): any => {
+    date = (this.range.get('date')?.value);
   }
+
+
 
   display = (): void => {
     console.log(this.selectedDate);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   ngOnInit(): void {
     console.log(this.range.value);
@@ -224,5 +212,26 @@ export class DateComponent implements OnInit {
       this.min = this.min;
     }*/
   }
+
+  sample = this.fb.group({
+    test1: [],
+    test2: []
+  });
+
+  minimum: any = 2021-5-10;
+
+  value=(type:string, event1:any):any =>{
+    console.log(`${type}: ${event1.value}`)
+    this.minimum=event1.value;
+  }
+
+  maximum: any = 2021-5-12;
+
+  value1=(type:string,event2:any):any=>{
+    console.log(`${type}: ${event2.value}`);
+    this.maximum=event2.value;
+  }
+
+
 
 }
