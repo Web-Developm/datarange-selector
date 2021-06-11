@@ -12,15 +12,19 @@
 
 
 <div class="container pt-5 date-range">
-  <p>{{campaignOne.controls['start'].value}} {{campaignOne.controls['end'].value}} </p>
+
+  <p>{{campaignOne.value | json}}</p>
+  
   <mat-form-field class="example-form-field" appearance="outline">
     <mat-label>Enter a date range</mat-label>
     <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
+
       <input matStartDate placeholder="Start Date" formControlName="start" (dateInput)="changeDate1('input',$event)"
         (dateChange)="changeDate1('change',$event)">
 
       <input matEndDate placeholder="End Date" formControlName="end" (dateInput)="changeDate2('input',$event)"
         (dateChange)="changeDate2('change',$event)">
+
     </mat-date-range-input>
 
     <mat-datepicker-toggle matSuffix [for]="campaignOnePicker" type="time"></mat-datepicker-toggle>
@@ -37,6 +41,11 @@
 
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Time</mat-label>
+    <input type="time" matInput id="time" (onChange)="time($event)">
+  </mat-form-field>
+
 
 </div>
 
@@ -44,22 +53,30 @@
 
 
 <div class="container select pt-5">
-  {{range.controls['date'].value}}
+  
   <form [formGroup]="range">
     <mat-form-field appearance="outline">
       <mat-label>Select the date</mat-label>
       <input matInput [matDatepicker]="picker" [min]="first" [max]="last" placeholder="date" formControlName="date"
         (dateInput)="changeDate3('range',$event)" (dateChange)="changeDate3('range',$event)">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #picker></mat-datepicker>
+      <mat-datepicker touchUi #picker>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+
+      
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Time</mat-label>
+      <input type="time" matInput>
     </mat-form-field>
   </form>
 
 </div>
-
-
-
-
 
 <div class="container table">
   <mat-card class="example-card">
@@ -72,6 +89,10 @@
         (dateChange)="dateChanged($event)"></mat-calendar>
     </mat-card-content>
   </mat-card>
+
+</div>
+
+<div class="container">
 
 </div>
 

@@ -61,7 +61,7 @@ export class DateComponent implements OnInit {
   min: number = this.today.getMinutes();
   week1: number = this.today.getDay();
 
-  temp:any=new Date('2021-01-21');
+  temp: any = new Date('2021-01-21');
 
 
   campaignOne = this.fb.group({
@@ -77,15 +77,15 @@ export class DateComponent implements OnInit {
 
 
 
-  first: any = new Date(this.campaignOne.get('start')?.value);
+  first: any = new Date(this.campaignOne.get('start')?.value,10,30);
   last: any = new Date(this.campaignOne.get('end')?.value);
 
   date1: any = new Date(this.range.get('date')?.value);
 
 
   selectedDate = (new Date(this.date1));
-  
-  
+
+
 
 
 
@@ -102,12 +102,23 @@ export class DateComponent implements OnInit {
   changeDate3 = (type: string, event2: MatDatepickerInputEvent<Date>): any => {
     //console.log(`${type}: ${event2.value}`);
     this.date1 = event2.value;
-    this.selectedDate=new Date(this.date1);
+    this.selectedDate = new Date(this.date1);
     console.log(new Date(this.date1));
   }
 
   dateChanged = (date: any): any => {
     date = (this.range.get('date')?.value);
+  }
+
+  time = (value: any): any => {
+    value = document.getElementById('time');
+
+    if (value < 12) {
+      value += "AM"
+    }
+    else {
+      value += "PM";
+    }
   }
 
 
@@ -211,7 +222,7 @@ export class DateComponent implements OnInit {
     }*/
   }
 
-  
+
 
 
 
