@@ -13,8 +13,7 @@
 
 <div class="container pt-5 date-range">
 
-  <p>{{campaignOne.value | json}}</p>
-  
+
   <mat-form-field class="example-form-field" appearance="outline">
     <mat-label>Enter a date range</mat-label>
     <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
@@ -41,19 +40,34 @@
 
   </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Time</mat-label>
-    <input type="time" matInput id="time" (onChange)="time($event)">
+
+
+
+</div>
+
+<div class="container">
+  <mat-form-field appearance="outline" [formGroup]="customrange">
+    <mat-label>Start date</mat-label>
+    <input matInput [matDatepicker]="picker1" formControlName="value1" (dateInput)="changeDate4('input',$event)"
+      (dateChange)="changeDate4('change',$event)" [min]="first" [max]="last">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
 
-
+  <mat-form-field appearance="outline" [formGroup]="customrange">
+    <mat-label>End Date</mat-label>
+    <input matInput [matDatepicker]="picker2" formControlName="value2" (dateInput)="changeDate5('input',$event)"
+      (dateChange)="changeDate5('change',$event)" [min]="first" [max]="last">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
 </div>
 
 
 
 
-<div class="container select pt-5">
-  
+<!--<div class="container select pt-5">
+
   <form [formGroup]="range">
     <mat-form-field appearance="outline">
       <mat-label>Select the date</mat-label>
@@ -67,16 +81,14 @@
         </mat-datepicker-actions>
       </mat-datepicker>
 
-      
+
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Time</mat-label>
-      <input type="time" matInput>
-    </mat-form-field>
+
   </form>
 
-</div>
+</div>-->
+
 
 <div class="container table">
   <mat-card class="example-card">
@@ -95,6 +107,8 @@
 <div class="container">
 
 </div>
+
+
 
 
 

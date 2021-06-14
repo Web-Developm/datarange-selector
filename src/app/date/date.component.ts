@@ -14,14 +14,15 @@ const moment = _rollupMoment || _moment;
 
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'DD-MM-YYYY',
+    dateInput: 'DD-MM-YYYY LT',
   },
 
   display: {
-    dateInput: 'DD-MM-YYYY',
+    dateInput: 'DD-MM-YYYY LT',
     monthYearLabel: 'MMM YYYY',
     dateAllLabel: 'LL',
-    monthYearAllLabel: 'MMM YYYY'
+    monthYearAllLabel: 'MMM YYYY',
+    timepickerInput: 'LT'
   },
 };
 
@@ -69,6 +70,11 @@ export class DateComponent implements OnInit {
     end: []
   });
 
+  customrange = this.fb.group({
+    value1: [],
+    value2: []
+  })
+
 
 
   range = this.fb.group({
@@ -77,10 +83,13 @@ export class DateComponent implements OnInit {
 
 
 
-  first: any = new Date(this.campaignOne.get('start')?.value,10,30);
+  first: any = new Date(this.campaignOne.get('start')?.value);
   last: any = new Date(this.campaignOne.get('end')?.value);
 
   date1: any = new Date(this.range.get('date')?.value);
+
+  value1: any = new Date(this.customrange.get('value1')?.value);
+  value2: any = new Date(this.customrange.get('value2')?.value);
 
 
   selectedDate = (new Date(this.date1));
@@ -106,8 +115,20 @@ export class DateComponent implements OnInit {
     console.log(new Date(this.date1));
   }
 
+  changeDate4 = (type: string, event3: MatDatepickerInputEvent<Date>): any => {
+    this.value1 = event3.value;
+    this.selectedDate = new Date(this.value1);
+  }
+
+  changeDate5 = (type: string, event4: MatDatepickerInputEvent<Date>): any => {
+    this.value2 = event4.value;
+    this.selectedDate = new Date(this.value2);
+  }
+
+
+
   dateChanged = (date: any): any => {
-    date = (this.range.get('date')?.value);
+    //date = (this.range.get('date')?.value);
   }
 
   time = (value: any): any => {
