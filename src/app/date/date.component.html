@@ -63,6 +63,21 @@
   </mat-form-field>
 </div>
 
+<!--<div class="container">
+  <mat-form-field appearance="outline" class="example-form-field" [formGroup]="customrange">
+    <mat-label>Select custom date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker1" >
+      <input matStartDate placeholder="start date" formControlName="value1" (dateInput)="changeDate4('input',$event)"
+        (dateChange)="changeDate4('change',$event)" [min]="first" [max]="last">
+      <input matEndDate placeholder="end date" formControlName="value2" (dateInput)="changeDate5('input',$event)"
+        (dateChange)="changeDate5('change',$event)" [min]="first" [max]="last">
+    </mat-date-range-input>
+
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker1></mat-date-range-picker>
+  </mat-form-field>
+</div>-->
+
 
 
 
@@ -97,8 +112,8 @@
     </mat-card-header>
 
     <mat-card-content>
-      <mat-calendar #calendar [selected]="selectedDate" (selectedChange)="dateChanged($event)"
-        (dateChange)="dateChanged($event)"></mat-calendar>
+      <mat-calendar #calendar [minDate]="minDate" [maxDate]="maxDate" [selected]="selectedDate"
+        (selectedChange)="dateChanged($event)" (dateChange)="dateChanged($event)"></mat-calendar>
     </mat-card-content>
   </mat-card>
 

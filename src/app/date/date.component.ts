@@ -65,6 +65,8 @@ export class DateComponent implements OnInit {
   temp: any = new Date('2021-01-21');
 
 
+
+
   campaignOne = this.fb.group({
     start: [],
     end: []
@@ -94,6 +96,9 @@ export class DateComponent implements OnInit {
 
   selectedDate = (new Date(this.date1));
 
+  minDate = new Date();
+  maxDate = new Date();
+
 
 
 
@@ -117,12 +122,14 @@ export class DateComponent implements OnInit {
 
   changeDate4 = (type: string, event3: MatDatepickerInputEvent<Date>): any => {
     this.value1 = event3.value;
-    this.selectedDate = new Date(this.value1);
+    //this.selectedDate = new Date(this.value1);
+    this.minDate = new Date(this.value1);
   }
 
   changeDate5 = (type: string, event4: MatDatepickerInputEvent<Date>): any => {
     this.value2 = event4.value;
-    this.selectedDate = new Date(this.value2);
+    //this.selectedDate = new Date(this.value2);
+    this.maxDate = new Date(this.value2);
   }
 
 
