@@ -51,7 +51,12 @@
     <input matInput [matDatepicker]="picker1" formControlName="value1" (dateInput)="changeDate4('input',$event)"
       (dateChange)="changeDate4('change',$event)" [min]="first" [max]="last">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
+    <mat-datepicker #picker1>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
   </mat-form-field>
 
   <mat-form-field appearance="outline" [formGroup]="customrange">
@@ -59,7 +64,12 @@
     <input matInput [matDatepicker]="picker2" formControlName="value2" (dateInput)="changeDate5('input',$event)"
       (dateChange)="changeDate5('change',$event)" [min]="first" [max]="last">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
+    <mat-datepicker #picker2>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
   </mat-form-field>
 </div>
 
