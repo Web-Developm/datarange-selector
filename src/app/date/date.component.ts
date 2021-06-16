@@ -1,13 +1,17 @@
-import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { MatCalendar, MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatCalendar, MatCalendarCellCssClasses, MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { CalendarService } from '../calendar.service';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
+
+
 import * as _moment from 'moment';
 
 import { default as _rollupMoment, Moment } from 'moment';
+
+//import { Moment } from 'moment';
 
 
 const moment = _rollupMoment || _moment;
@@ -50,8 +54,12 @@ export class DateComponent implements OnInit {
 
 
 
+
+
   @ViewChild('calendar', { static: true })
   calendar!: MatCalendar<moment.Moment>;
+
+  select!: Date;
 
 
   today: Date = new Date();
@@ -122,15 +130,31 @@ export class DateComponent implements OnInit {
 
   changeDate4 = (type: string, event3: MatDatepickerInputEvent<Date>): any => {
     this.value1 = event3.value;
-    //this.selectedDate = new Date(this.value1);
-    this.minDate = (new Date(this.value1));
+    this.selectedDate = new Date(this.value1);
+    this.minDate = new Date(this.first);
   }
 
   changeDate5 = (type: string, event4: MatDatepickerInputEvent<Date>): any => {
     this.value2 = event4.value;
-    //this.selectedDate = new Date(this.value2);
-    this.maxDate = (new Date(this.value2));
+    this.maxDate = new Date(this.last);
   }
+
+  dateClass() {
+    return (date: Date): MatCalendarCellCssClasses => {
+      if (this.date === 1) {
+        return 'special-date';
+      }
+      else {
+        return '';
+      }
+    };
+  }
+
+
+
+
+
+
 
 
 
@@ -138,7 +162,7 @@ export class DateComponent implements OnInit {
     //date = (this.range.get('date')?.value);
   }
 
-  time = (value: any): any => {
+  /*time = (value: any): any => {
     value = document.getElementById('time');
 
     if (value < 12) {
@@ -147,7 +171,7 @@ export class DateComponent implements OnInit {
     else {
       value += "PM";
     }
-  }
+  }*/
 
 
 

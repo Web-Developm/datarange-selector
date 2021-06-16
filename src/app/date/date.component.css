@@ -14,3 +14,8 @@ mat-calendar{
 .example-form-field{
   width:40%;
 }
+
+.special-date{
+  background-color: aqua;
+}
+
