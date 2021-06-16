@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { MatCalendar, MatCalendarCellCssClasses, MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatCalendar, MatCalendarCellCssClasses, MatDatepicker, MatDatepickerInputEvent, MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { CalendarService } from '../calendar.service';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -42,7 +42,8 @@ export const MY_FORMATS = {
     },
 
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
-  ]
+  ],
+  encapsulation:ViewEncapsulation.Emulated,
 })
 
 
@@ -141,15 +142,8 @@ export class DateComponent implements OnInit {
     //this.maxDate = new Date(this.last);
   }
 
-  dateClass() {
-    return (date: Date): MatCalendarCellCssClasses => {
-      if (this.date === 1) {
-        return 'special-date';
-      }
-      else {
-        return '';
-      }
-    };
+  dateClass:MatCalendarCellClassFunction<Date>=(cellDate, view)=>{
+    return '';
   }
 
 

@@ -45,6 +45,8 @@
 
 </div>
 
+
+
 <div class="container">
   <mat-form-field appearance="outline" [formGroup]="customrange">
     <mat-label>Start date</mat-label>
@@ -115,7 +117,7 @@
 </div>-->
 
 
-/*<div class="container table">
+<div class="container table">
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>Calendar</mat-card-title>
@@ -123,7 +125,7 @@
 
     <mat-card-content>
       <mat-calendar [minDate]="minDate" [maxDate]="maxDate" [selected]="selectedDate"
-        (selectedChange)="dateChanged($event)" (dateChange)="dateChanged($event)">
+        (selectedChange)="dateChanged($event)" (dateChange)="dateChanged($event)" [dateClass]="dateClass">
 
       </mat-calendar>
     </mat-card-content>
