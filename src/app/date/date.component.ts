@@ -114,29 +114,31 @@ export class DateComponent implements OnInit {
   changeDate1 = (type: string, event: MatDatepickerInputEvent<Date>): any => {
     //console.log(`${type}: ${event.value}`);
     this.first = event.value;
+    this.minDate = new Date(this.first);
   }
 
   changeDate2 = (type: string, event1: MatDatepickerInputEvent<Date>): any => {
     //console.log(`${type}: ${event1.value}`)
     this.last = event1.value;
+    this.maxDate = new Date(this.last);
   }
 
   changeDate3 = (type: string, event2: MatDatepickerInputEvent<Date>): any => {
     //console.log(`${type}: ${event2.value}`);
     this.date1 = event2.value;
-    this.selectedDate = new Date(this.date1);
+    //this.selectedDate = new Date(this.value1);
     console.log(new Date(this.date1));
   }
 
   changeDate4 = (type: string, event3: MatDatepickerInputEvent<Date>): any => {
     this.value1 = event3.value;
     this.selectedDate = new Date(this.value1);
-    this.minDate = new Date(this.first);
+    //this.minDate = new Date(this.first);
   }
 
   changeDate5 = (type: string, event4: MatDatepickerInputEvent<Date>): any => {
     this.value2 = event4.value;
-    this.maxDate = new Date(this.last);
+    //this.maxDate = new Date(this.last);
   }
 
   dateClass() {
@@ -159,7 +161,9 @@ export class DateComponent implements OnInit {
 
 
   dateChanged = (date: any): any => {
-    //date = (this.range.get('date')?.value);
+    date = (this.range.get('date')?.value);
+    console.log(date);
+
   }
 
   /*time = (value: any): any => {
